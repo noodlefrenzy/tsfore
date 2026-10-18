@@ -124,12 +124,13 @@ Square corners everywhere (`rounded.none`). Colour chips are 9px squares. Status
 
 ## Components
 
-- **Command bar:** sticky. Amber brand block, a command echo (`FMVS <GO>`), numbered function keys (the number keys 1–8 jump to sections; the key in view gets `aria-current`), run status on the right.
+- **Command bar:** sticky. Amber brand block, a command echo (`FMVS <GO>`), numbered function keys (the number keys 1–9 jump to sections; the key in view gets `aria-current`), run status on the right.
 - **Ticker tape:** the page's single authored motion: a linear marquee of model quotes and headlines. It pauses on hover or focus, has a PAUSE/PLAY button, and is static under `prefers-reduced-motion`.
 - **Family pane:** header strip (family chip and best member), one-line description, a 2×2 quote grid (rel MASE, rel WQL, 80% coverage, sec/window; the lead across families in amber), and WINS / LOSES / TIES lines.
 - **Quote board:** series × model table, sticky row headers, family group headers, cells tinted by log-ratio to the baseline (or by distance from 0.80 for coverage), best per row outlined in amber, footer row with the suite score. Suite and metric switch through segmented radio groups (arrow keys work).
 - **Paired-test row:** pair, win-share bar diverging from a 50% centre line, won/n, p-value (amber when p < 0.05).
 - **Claim stamp:** HELD (blue outline), REVISED (amber outline), OVERTURNED (red fill; the claim text struck through).
+- **Terms list:** a two-column grid of ruled panes (Models, Scores, Protocol, Statistics) that collapses to one column at 860px. Each term has a mono name, a short Archivo definition and a mono line of explainer links. Arxiv links are pinned to a version and Wikipedia links to a revision. A term reached by `#term-*` turns amber through `:target`.
 - **Order row:** priority block (P1 filled amber, P2 amber outline, P3 grey outline), test name and description, "Could change" consequence.
 
 ## Do's and Don'ts

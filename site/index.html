@@ -34,6 +34,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <a href="#corrections" data-key="6"><kbd>6</kbd>CORR</a>
     <a href="#outlook" data-key="7"><kbd>7</kbd>NEXT</a>
     <a href="#method" data-key="8"><kbd>8</kbd>METHOD</a>
+    <a href="#terms" data-key="9"><kbd>9</kbd>TERMS</a>
   </nav>
   <div class="bar__status" aria-label="Run details"><span>RUN 2026-10-18</span><span>RTX 4090</span><span>ZERO-SHOT</span></div>
 </header>
@@ -156,6 +157,94 @@ uv run python scripts/build_site_data.py</code></pre>
           <li><a href="https://github.com/noodlefrenzy/tsfore/tree/main/docs/benchmarks/data">Per-window CSVs</a></li>
           <li><a href="https://github.com/noodlefrenzy/tsfore/blob/main/docs/benchmarks/batching-2026-10-18.md">Batching and speed</a></li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="terms" class="sect" aria-labelledby="terms-h">
+    <header class="sect__head"><h2 id="terms-h">Terms</h2><p>The vocabulary above in a sentence or two each, with somewhere to read the long version.</p></header>
+    <div class="terms">
+      <div class="terms__group">
+        <h3 class="terms__cat">Models</h3>
+        <dl>
+          <div class="term" id="term-naive"><dt>Random walk (naive)</dt>
+            <dd><p>Forecast every future step as the last value seen. It is the baseline every score here is divided by, and on prices it is notoriously hard to beat.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/toolbox.html#sec-simple-methods">FPP3 §5.2: simple methods</a></p></dd></div>
+          <div class="term" id="term-historic-average"><dt>Historic average</dt>
+            <dd><p>Forecast the mean of all history. It is a weak model for prices but the right baseline for returns, which are close to noise around a constant mean.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/toolbox.html#sec-simple-methods">FPP3 §5.2: the mean method</a></p></dd></div>
+          <div class="term" id="term-ets"><dt>AutoETS</dt>
+            <dd><p>Exponential smoothing: a forecast is a weighted average of past values, with weights that decay the further back they go. ETS models the error, trend and seasonality, each as none, additive or multiplicative. "Auto" fits the candidate combinations and keeps the one with the best AICc.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/exponential-smoothing.html#sec-ets">FPP3 ch. 8: ETS models</a> · <a href="https://nixtlaverse.nixtla.io/statsforecast/docs/models/autoets.html">statsforecast AutoETS</a></p></dd></div>
+          <div class="term" id="term-arima"><dt>AutoARIMA</dt>
+            <dd><p>ARIMA predicts a value from the series' own recent values (AR) and recent forecast errors (MA). It runs on a series differenced (I) until it has no trend. "Auto" searches the orders by AICc with the Hyndman–Khandakar algorithm. Refitting it on every window is most of the benchmark's run time.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/arima.html">FPP3 ch. 9: ARIMA</a> · <a href="https://nixtlaverse.nixtla.io/statsforecast/docs/models/autoarima.html">statsforecast AutoARIMA</a></p></dd></div>
+          <div class="term" id="term-foundation"><dt>Foundation model</dt>
+            <dd><p>A neural network pretrained on a large, varied corpus of time series. It forecasts a series it has never seen by reading the history as context, with no fitting on that series.</p>
+            <p class="term__more"><a href="https://arxiv.org/abs/2403.07815v3">Ansari et al., Chronos (arXiv 2403.07815v3)</a></p></dd></div>
+          <div class="term" id="term-timestral"><dt>Timestral</dt>
+            <dd><p>Mistral AI's family of time series foundation models, at 5M, 28M, 123M and 209M parameters. Its weights are under a Modified MIT license that excludes large companies.</p>
+            <p class="term__more"><a href="https://huggingface.co/mistralai/Timestral-123M">Model card</a> · <a href="https://github.com/mistralai/timestral">mistralai/timestral</a></p></dd></div>
+          <div class="term" id="term-chronos2"><dt>Chronos-2</dt>
+            <dd><p>Amazon's foundation model. It goes beyond single-series forecasting: group attention lets it read several related series and covariates at once. We run base (120M) and small (28M).</p>
+            <p class="term__more"><a href="https://arxiv.org/abs/2510.15821v1">Ansari et al., Chronos-2 (arXiv 2510.15821v1)</a> · <a href="https://huggingface.co/amazon/chronos-2">Model card</a></p></dd></div>
+          <div class="term" id="term-companion"><dt>Companion (<code>+cov</code>, <code>+joint</code>)</dt>
+            <dd><p>A related series fed in alongside the target and cut at the same point, such as WTI for Brent or VIX for the S&amp;P 500. With <code>+cov</code> it is a past-only covariate. With <code>+joint</code> both series are forecast together.</p>
+            <p class="term__more"><a href="https://github.com/noodlefrenzy/tsfore/blob/main/docs/adrs/0016-companion-series-for-multivariate-evaluation.md">ADR-0016: companion series</a></p></dd></div>
+        </dl>
+      </div>
+      <div class="terms__group">
+        <h3 class="terms__cat">Scores</h3>
+        <dl>
+          <div class="term" id="term-mase"><dt>MASE</dt>
+            <dd><p>Mean absolute scaled error: the forecast's mean absolute error divided by the in-sample error of a seasonal-naive forecast. Scaling makes it unit-free, so a series in dollars and one in percent points can sit in the same average. MASE is the point-forecast score.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/toolbox.html#sec-accuracy">FPP3 §5.8: scaled errors</a> · <a href="https://doi.org/10.1016/j.ijforecast.2006.03.001">Hyndman &amp; Koehler (2006)</a></p></dd></div>
+          <div class="term" id="term-wql"><dt>WQL</dt>
+            <dd><p>Weighted quantile loss. Each model forecasts nine deciles, from 10% to 90%, not one number. WQL takes the pinball loss at each decile, divides it by the sum of the actual values, and averages over the deciles. It approximates CRPS, so it scores the whole forecast distribution: being sure and right, being wide when unsure. We use it because uncertainty is what the foundation models are built to forecast, and a point score alone would miss most of what they produce.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/toolbox.html#sec-distaccuracy">FPP3 §5.9: quantile scores</a> · <a href="https://docs.aws.amazon.com/forecast/latest/dg/metrics.html">AWS: wQL</a> · <a href="https://arxiv.org/abs/2403.07815v3">Chronos paper: WQL and CRPS</a></p></dd></div>
+          <div class="term" id="term-relative"><dt>Relative score (rel MASE, rel WQL)</dt>
+            <dd><p>A model's score on each series divided by the random walk's, combined across series with a geometric mean. With a geometric mean, a halving on one series and a doubling on another cancel out, and no single volatile series dominates. Below 1.00 beats the baseline.</p>
+            <p class="term__more"><a href="https://doi.org/10.1145/5666.5673">Fleming &amp; Wallace (1986)</a> · <a href="https://arxiv.org/abs/2410.10393v2">GIFT-Eval (arXiv 2410.10393v2)</a></p></dd></div>
+          <div class="term" id="term-coverage"><dt>80% coverage</dt>
+            <dd><p>The share of actual outcomes that land inside a model's 10–90% band. A calibrated model scores about 0.80. Above that its intervals are too wide (over-covering); below, too narrow and overconfident.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/toolbox.html#sec-prediction-intervals">FPP3 §5.5: prediction intervals</a> · <a href="https://doi.org/10.1111/j.1467-9868.2007.00587.x">Gneiting et al. (2007)</a></p></dd></div>
+          <div class="term" id="term-direction"><dt>Direction</dt>
+            <dd><p>The share of forecast steps whose up-or-down move from the last observation matches what happened. It is easy to read but blunt: it ignores how far the series moved.</p></dd></div>
+          <div class="term" id="term-pit"><dt>PIT</dt>
+            <dd><p>The probability integral transform: where each actual falls within its forecast distribution, as a percentile. If forecasts are calibrated these percentiles spread evenly, so a histogram of them shows miscalibration at every level, not just at 80%.</p>
+            <p class="term__more"><a href="https://doi.org/10.1111/j.1467-9868.2007.00587.x">Gneiting et al. (2007)</a></p></dd></div>
+        </dl>
+      </div>
+      <div class="terms__group">
+        <h3 class="terms__cat">Protocol</h3>
+        <dl>
+          <div class="term" id="term-rolling-origin"><dt>Rolling-origin backtest</dt>
+            <dd><p>Cut the series at a point, forecast what follows, score it, then move the cut forward and repeat. It is cross-validation that respects time: no model ever sees the future it is scored on.</p>
+            <p class="term__more"><a href="https://otexts.com/fpp3/toolbox.html#sec-tscv">FPP3 §5.10: time series cross-validation</a></p></dd></div>
+          <div class="term" id="term-window"><dt>Window, cutoff, horizon</dt>
+            <dd><p>A window is one cutoff plus the steps after it. The cutoff is the last point the model sees. The horizon is how many steps are forecast: 20 trading days for daily series, 12 months for monthly.</p>
+            <p class="term__more"><a href="https://github.com/noodlefrenzy/tsfore/blob/main/docs/glossary.md">tsfore glossary</a></p></dd></div>
+          <div class="term" id="term-zero-shot"><dt>Zero-shot</dt>
+            <dd><p>No training or fine-tuning on the series being forecast, and no tuned settings. Every model here runs on defaults.</p>
+            <p class="term__more"><a href="https://arxiv.org/abs/2403.07815v3">Chronos (arXiv 2403.07815v3)</a></p></dd></div>
+          <div class="term" id="term-leakage"><dt>Leakage</dt>
+            <dd><p>The test data, or data close to it, was in a model's training set, so its scores flatter it. The monthly windows reach back to 1978, which the foundation models may well have seen in pretraining.</p>
+            <p class="term__more"><a href="https://en.wikipedia.org/w/index.php?title=Leakage_(machine_learning)&amp;oldid=1371869141">Wikipedia: leakage</a> · <a href="https://arxiv.org/abs/2509.26468v4">fev-bench (arXiv 2509.26468v4)</a></p></dd></div>
+        </dl>
+      </div>
+      <div class="terms__group">
+        <h3 class="terms__cat">Statistics</h3>
+        <dl>
+          <div class="term" id="term-wilcoxon"><dt>Paired Wilcoxon signed-rank test</dt>
+            <dd><p>It compares two models on the same windows. It ranks the per-window differences (here, log MASE ratios) by size and asks whether one side's wins outweigh the other's by more than chance would. It does not assume the errors are normally distributed.</p>
+            <p class="term__more"><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html">scipy.stats.wilcoxon</a> · <a href="https://en.wikipedia.org/w/index.php?title=Wilcoxon_signed-rank_test&amp;oldid=1366509069">Wikipedia</a></p></dd></div>
+          <div class="term" id="term-p-value"><dt>p-value</dt>
+            <dd><p>How often a gap at least this lopsided would turn up if the two models were equally good. A small p says the gap is unlikely to be chance. It does not say how large the gap is.</p>
+            <p class="term__more"><a href="https://en.wikipedia.org/w/index.php?title=P-value&amp;oldid=1378624770">Wikipedia: p-value</a></p></dd></div>
+          <div class="term" id="term-bonferroni"><dt>Bonferroni correction</dt>
+            <dd><p>Run enough tests and something will look significant by luck. Bonferroni multiplies each p-value by the number of tests run, which keeps the chance of any false positive under the threshold. That is why the one companion that helped, at p = 0.017 among six comparisons, ends up near 0.10.</p>
+            <p class="term__more"><a href="https://en.wikipedia.org/w/index.php?title=Bonferroni_correction&amp;oldid=1377938590">Wikipedia: Bonferroni correction</a></p></dd></div>
+        </dl>
       </div>
     </div>
   </section>
