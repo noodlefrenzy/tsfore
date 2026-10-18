@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- agent-notes: { ctx: "tsfore results site: market-terminal single page", deps: [site/style.css, site/app.js, site/data.js, DESIGN.md, PRODUCT.md], state: active, last: "claude@2026-10-18", key: ["static for GitHub Pages; no build step", "direction contract is the first child of body"] } -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tsfore · Foundation models vs statistics</title>
+<meta name="description" content="Zero-shot Timestral and Chronos-2 against classical statistical baselines on 11 public finance series: where each family wins, where it loses, how sure we are, and what to test next.">
+<meta name="color-scheme" content="dark">
+<link rel="preload" href="fonts/martian-mono-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Cpath d='M2 12 L6 7 L9 9 L14 3' stroke='%23ffa028' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+</head>
+<body>
+<!--
+THESIS: Model families run like securities on a market terminal: three family panes, a quote grid per series, findings on the wire, corrections printed as corrections. Refuses the default ML-results page of a hero verdict, a bar chart and a methodology accordion.
+OWN-WORLD: True-black ground; amber command chrome; white tabular quotes in Martian Mono at a condensed width; family inks teal (Timestral), violet (Chronos-2), white (statistics); a blue/red diverging quote ink for better/worse than the random walk; hairline pane rules, no rounded cards, no shadows.
+STORY: Peers learn which family wins where (Timestral broadly, statistics on CPI, Chronos-2 on rates), how sure we are (paired tests), what changed from 6 to 48 windows, and what remains untested. They follow links to the reports and code.
+FIRST VIEWPORT: Command bar with numbered function keys; a wire headline in Archivo condensed; three family panes side by side quoting rel MASE, rel WQL, coverage and speed; the ticker tape beneath.
+FORM: grounded list position 7 (trading terminal); seed key 982665b6 (re-roll of df8914cf).
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+-->
+<a class="skip" href="#summary">Skip to results</a>
+
+<header class="bar" role="banner">
+  <div class="bar__brand"><span class="brand">TSFORE</span><span class="cmd" aria-hidden="true">FMVS <span class="go">&lt;GO&gt;</span></span></div>
+  <nav class="keys" aria-label="Sections">
+    <a href="#summary" data-key="1"><kbd>1</kbd>SUMM</a>
+    <a href="#families" data-key="2"><kbd>2</kbd>FAMILIES</a>
+    <a href="#series" data-key="3"><kbd>3</kbd>SERIES</a>
+    <a href="#tests" data-key="4"><kbd>4</kbd>TESTS</a>
+    <a href="#companions" data-key="5"><kbd>5</kbd>PAIRS</a>
+    <a href="#corrections" data-key="6"><kbd>6</kbd>CORR</a>
+    <a href="#outlook" data-key="7"><kbd>7</kbd>NEXT</a>
+    <a href="#method" data-key="8"><kbd>8</kbd>METHOD</a>
+  </nav>
+  <div class="bar__status" aria-label="Run details"><span>RUN 2026-10-18</span><span>RTX 4090</span><span>ZERO-SHOT</span></div>
+</header>
+
+<div class="tape" aria-label="Findings ticker">
+  <button class="tape__toggle" type="button" aria-pressed="false" aria-label="Pause ticker">PAUSE</button>
+  <div class="tape__viewport"><ul class="tape__track" id="tape"></ul></div>
+</div>
+
+<main>
+  <section id="summary" class="sect" aria-labelledby="summary-h">
+    <div class="wire">
+      <h1 id="summary-h" class="wire__head">Timestral leads. Its edge over classical statistics is real on probabilistic forecasts, thin on point forecasts.</h1>
+      <p class="wire__dek">Mistral's Timestral and Amazon's Chronos-2 forecast 11 public finance series with no training on them, against naive, ETS and ARIMA baselines. Every figure below comes from the committed per-window CSVs; scores are ratios to the random walk, so below 1.00 beats it.</p>
+      <p class="wire__meta"><time datetime="2026-10-18">18 OCT 2026</time><span>11 SERIES · 48 WINDOWS EACH · 528 SCORED FORECASTS</span></p>
+    </div>
+    <div class="panes" id="panes"></div>
+    <p class="note">Each pane quotes the family's best member on the <code>finance</code> suite. rel MASE and rel WQL are geometric means over series of the ratio to the random walk; 80% coverage is the share of outcomes inside the 10–90% band (target 0.80); speed is seconds per forecast window, batched on the GPU for the foundation models.</p>
+  </section>
+
+  <section id="families" class="sect" aria-labelledby="families-h">
+    <header class="sect__head"><h2 id="families-h">Three ways to forecast</h2><p>Where each family performs well and where it doesn't, series by series.</p></header>
+    <div class="dossiers" id="dossiers"></div>
+  </section>
+
+  <section id="series" class="sect" aria-labelledby="series-h">
+    <header class="sect__head">
+      <h2 id="series-h">Quote board: every model on every series</h2>
+      <p>Each cell is the model's score on one series relative to the random walk. Blue beats it, red loses to it; the number is always printed.</p>
+    </header>
+    <div class="controls" role="group" aria-label="Board settings">
+      <div class="seg" role="radiogroup" aria-label="Suite">
+        <button type="button" role="radio" aria-checked="true" data-suite="finance">FINANCE · 48W</button>
+        <button type="button" role="radio" aria-checked="false" data-suite="pairs">PAIRS · 36W</button>
+      </div>
+      <div class="seg" role="radiogroup" aria-label="Metric">
+        <button type="button" role="radio" aria-checked="true" data-metric="mase">MASE</button>
+        <button type="button" role="radio" aria-checked="false" data-metric="wql">WQL</button>
+        <button type="button" role="radio" aria-checked="false" data-metric="cov">80% COV</button>
+      </div>
+    </div>
+    <div class="board-wrap" tabindex="0" role="region" aria-label="Quote board, scrolls sideways on small screens"><table class="board" id="board"></table></div>
+    <p class="note" id="board-note"></p>
+  </section>
+
+  <section id="tests" class="sect" aria-labelledby="tests-h">
+    <header class="sect__head">
+      <h2 id="tests-h">How sure are we?</h2>
+      <p>Averages hide which windows a model actually wins. Each row pairs two models on every window and asks, with a Wilcoxon signed-rank test, whether one is consistently better.</p>
+    </header>
+    <div class="tests" id="tests-list"></div>
+    <div class="ablation">
+      <div><h3>The natural gas question</h3>
+      <p>Timestral's point-forecast lead over AutoETS rests largely on one series. Leave natural gas out and the MASE gap closes; the probabilistic (WQL) gap does not.</p></div>
+      <div class="ab-wrap" tabindex="0" role="region" aria-label="Ablation table"><table class="ab" id="ablation"></table></div>
+    </div>
+  </section>
+
+  <section id="companions" class="sect" aria-labelledby="comp-h">
+    <header class="sect__head">
+      <h2 id="comp-h">Do related series help?</h2>
+      <p>The <code>pairs</code> suite gives each foundation model a companion: Brent with WTI, EUR with JPY, the S&amp;P 500 with VIX. <code>+cov</code> passes it as a past covariate; <code>+joint</code> forecasts it alongside the target. Only the target is scored.</p>
+    </header>
+    <div class="comp" id="comp"></div>
+    <p class="note">Chronos-2 runs past-only covariates through the same attention group as extra targets, so its <code>+cov</code> and <code>+joint</code> are the same computation; only <code>+cov</code> is shown. The S&amp;P 500 + VIX pairs start in 1990 and leave room for 36 yearly windows, so this suite runs 36 rather than 48.</p>
+  </section>
+
+  <section id="corrections" class="sect" aria-labelledby="corr-h">
+    <header class="sect__head">
+      <h2 id="corr-h">Corrections: 6 windows to 48</h2>
+      <p>The first runs used 6 windows per series. Batching made 48 cheap, and several early claims did not survive. They are kept here, marked, not quietly edited.</p>
+    </header>
+    <div class="corr">
+      <ol class="claims" id="claims"></ol>
+      <figure class="slope">
+        <figcaption>rel MASE by model, 6 windows → 48 windows (lower is better)</figcaption>
+        <div id="slope"></div>
+      </figure>
+    </div>
+  </section>
+
+  <section id="outlook" class="sect" aria-labelledby="out-h">
+    <header class="sect__head">
+      <h2 id="out-h">What we'd test next</h2>
+      <p>Ordered by how much each could change the conclusions above.</p>
+    </header>
+    <ol class="orders" id="orders"></ol>
+  </section>
+
+  <section id="method" class="sect" aria-labelledby="method-h">
+    <header class="sect__head"><h2 id="method-h">Method</h2><p>Enough to rerun it or to distrust it for the right reasons.</p></header>
+    <div class="method">
+      <dl>
+        <dt>Protocol</dt>
+        <dd>Rolling origin. The last <var>W</var> × <var>H</var> points of each series form <var>W</var> back-to-back windows of horizon <var>H</var> (20 trading days for daily series, 12 months for monthly). Each model sees only the history before a window's cutoff. Statistical models refit on every window, on at most the last 1,024 points.</dd>
+        <dt>Scores</dt>
+        <dd><strong>MASE</strong>: mean absolute error scaled by the in-sample seasonal-naive error. <strong>WQL</strong>: weighted quantile loss over the nine deciles. <strong>80% coverage</strong>: share of outcomes inside the 10–90% band. A model's suite score is the geometric mean over series of its ratio to the random walk.</dd>
+        <dt>Significance</dt>
+        <dd>Paired Wilcoxon signed-rank test on per-window log MASE ratios. No multiple-comparison correction is applied to the p-values shown; read p near 0.02 with that in mind.</dd>
+        <dt>Data</dt>
+        <dd>11 public series from <a href="https://github.com/datasets">github.com/datasets</a>, pinned by commit: S&amp;P 500 level and log returns, CPI, 10-year Treasury yield and gold (monthly); VIX, WTI, Brent, Henry Hub natural gas, EUR and JPY per USD (daily). The S&amp;P 500 and VIX are fetched on use rather than committed, since their owners restrict redistribution.</dd>
+        <dt>Models</dt>
+        <dd>Timestral 5M, 28M, 123M and 209M (pinned commit <code>a534bdb</code>); Chronos-2 small (28M) and base (120M), <code>chronos-forecasting</code> 2.3.2; statsforecast 2.0.1. All zero-shot with default settings. Torch 2.14.1 (CUDA 13) on an RTX 4090 under WSL2.</dd>
+        <dt>Caveats</dt>
+        <dd>One domain, mostly random-walk-like prices. Monthly windows reach back to 1978, which both foundation models may have seen in pretraining. Daily windows cover only late 2022 to October 2026.</dd>
+      </dl>
+      <div class="repro">
+        <h3>Rerun it</h3>
+<pre><code>uv sync --all-extras
+uv run tsfore bench --suite finance --windows 48 \
+  --models naive,historic_average,auto_ets,auto_arima,\
+timestral-5m,timestral-28m,timestral-123m,timestral-209m,\
+chronos-2-small,chronos-2
+uv run python scripts/build_site_data.py</code></pre>
+        <h3>Sources</h3>
+        <ul class="links">
+          <li><a href="https://github.com/noodlefrenzy/tsfore">Code: noodlefrenzy/tsfore</a></li>
+          <li><a href="https://github.com/noodlefrenzy/tsfore/blob/main/docs/benchmarks/finance-48w-2026-10-18.md">Finance report, 48 windows</a></li>
+          <li><a href="https://github.com/noodlefrenzy/tsfore/blob/main/docs/benchmarks/pairs-36w-2026-10-18.md">Pairs report, 36 windows</a></li>
+          <li><a href="https://github.com/noodlefrenzy/tsfore/tree/main/docs/benchmarks/data">Per-window CSVs</a></li>
+          <li><a href="https://github.com/noodlefrenzy/tsfore/blob/main/docs/benchmarks/batching-2026-10-18.md">Batching and speed</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>tsfore is an evaluation playground, not investment advice. Timestral weights are released by Mistral AI and Chronos-2 weights by Amazon under their own licenses. Fonts: Martian Mono and Archivo, SIL Open Font License. tsfore is <a href="https://github.com/noodlefrenzy/tsfore/blob/main/LICENSE">MIT-licensed</a>; third-party terms are in <a href="https://github.com/noodlefrenzy/tsfore/blob/main/NOTICE.md">NOTICE.md</a>.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
