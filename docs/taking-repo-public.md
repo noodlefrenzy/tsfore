@@ -134,10 +134,10 @@ were checked on 2026-10-18 (VERIFIED from the source pages):
 - [ ] MEATPUPPET (optional, belt and braces): GitHub can keep serving unreferenced commits
   by SHA until it garbage-collects them. If that matters to you, ask GitHub Support to run
   GC on the repo before you flip it. Otherwise, the old commits are unreachable from any ref.
-- [ ] Add a GitHub Pages workflow for `site/` (upload-pages-artifact + deploy-pages, pinned).
+- [x] `site/` deployed to GitHub Pages. (2026-10-18, REPORTED by the owner, not verified by an agent)
 - [ ] MEATPUPPET: Settings → General → Danger Zone → **Change visibility → Public**.
-- [ ] MEATPUPPET: Settings → Pages → Source: **GitHub Actions**. Then check that the site
-  loads and that its `main` links resolve.
+- [x] MEATPUPPET: Settings → Pages. (2026-10-18, REPORTED by the owner) Check once that the
+  site's `main` links (benchmarks, LICENSE, NOTICE) resolve.
 - [ ] MEATPUPPET: Settings → Code security → turn on **secret scanning**, **push
   protection**, **Dependabot alerts** and **private vulnerability reporting**.
 - [ ] MEATPUPPET: Settings → Branches → protect `main` (require PRs or passing CI, as you
