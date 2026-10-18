@@ -301,6 +301,19 @@ h3 { font-family: var(--sans); font-stretch: 85%; font-weight: 700; font-size: 1
 .links { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .links a { font-family: var(--mono); font-stretch: 87.5%; font-size: 0.78rem; }
 
+/* ---- terms ---- */
+.terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--rule-hi); border: 1px solid var(--rule-hi); }
+.terms__group { background: var(--pane); padding: 14px 16px 4px; }
+.terms__cat { margin: 0 0 4px; font-family: var(--mono); font-stretch: 87.5%; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); }
+.terms dl { margin: 0; }
+.term { padding: 12px 0; border-top: 1px solid var(--row); }
+.term:first-child { border-top: 0; }
+.term dt { font-family: var(--mono); font-stretch: 87.5%; font-size: 0.74rem; font-weight: 700; color: var(--text); }
+.term dd { margin: 6px 0 0; }
+.term dd p { margin: 0; color: var(--prose); font-size: 0.95rem; max-width: 70ch; }
+.term dd .term__more { margin-top: 6px; color: var(--dim); font-family: var(--mono); font-stretch: 87.5%; font-size: 0.74rem; }
+.term:target dt { color: var(--amber); }
+
 .foot { max-width: 1320px; margin: 0 auto; padding: 32px var(--gutter) 48px; color: var(--dim); font-size: 0.82rem; }
 
 /* ---- responsive ---- */
@@ -313,7 +326,7 @@ h3 { font-family: var(--sans); font-stretch: 85%; font-weight: 700; font-size: 1
 }
 @media (max-width: 860px) {
   .panes { grid-template-columns: 1fr; }
-  .sect__head, .ablation, .corr, .method, .comp { grid-template-columns: minmax(0, 1fr); }
+  .sect__head, .ablation, .corr, .method, .comp, .terms { grid-template-columns: minmax(0, 1fr); }
   .test--head { display: none; }
   .slope { position: static; }
   .test { grid-template-columns: minmax(0, 1fr) 5.5em 5.5em; }
