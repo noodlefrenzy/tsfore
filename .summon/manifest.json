@@ -1,0 +1,9 @@
+{
+  "manifestVersion": 1,
+  "summonVersion": "0.1.0",
+  "targets": [
+    "claude"
+  ],
+  "scaffolded": "2026-10-17T04:50:03.781Z",
+  "source": "local"
+}

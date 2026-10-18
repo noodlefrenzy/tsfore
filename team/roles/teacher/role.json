@@ -1,0 +1,20 @@
+{
+  "may": [
+    "read",
+    "run",
+    "web"
+  ],
+  "must-not": [
+    "write:src",
+    "write:tests",
+    "write:docs",
+    "write:infra"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "cited-lines-exist",
+      "claim": "Every file and line the explanation cites exists at that path in the current tree."
+    }
+  ]
+}

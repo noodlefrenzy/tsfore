@@ -1,0 +1,113 @@
+{
+  "$comment": "Team event log schema. One JSON object per line in the log; every event carries t, seat, event. Fields listed under required must be present; verdict values are closed.",
+  "common": [
+    "t",
+    "seat",
+    "event"
+  ],
+  "events": {
+    "spawn": {
+      "required": [
+        "harness",
+        "tree"
+      ],
+      "doc": "a seat instance started; tree = {head, dirty}",
+      "optional": [
+        "instance",
+        "order",
+        "worktree"
+      ]
+    },
+    "claim": {
+      "required": [
+        "item"
+      ],
+      "optional": [
+        "station",
+        "order"
+      ],
+      "doc": "the seat took a work item, optionally at a named station of a line"
+    },
+    "check": {
+      "required": [
+        "id",
+        "grade",
+        "exit"
+      ],
+      "optional": [
+        "receipt",
+        "item",
+        "tree"
+      ],
+      "doc": "a declared check ran (deterministic) or was judged (inferential); tree = {head, dirty} binds a receipt to the state it ran against"
+    },
+    "finding": {
+      "required": [
+        "severity",
+        "summary"
+      ],
+      "optional": [
+        "file",
+        "line",
+        "item",
+        "lens"
+      ],
+      "doc": "one review finding"
+    },
+    "verdict": {
+      "required": [
+        "lens",
+        "verdict",
+        "item"
+      ],
+      "optional": [
+        "findings"
+      ],
+      "doc": "one lens's verdict on one item; the disagreement rate is computed over these"
+    },
+    "return": {
+      "required": [
+        "ok",
+        "item"
+      ],
+      "optional": [
+        "summary",
+        "station"
+      ],
+      "doc": "the seat finished and returned; a station is released only by ok:true from the instance that claimed it"
+    }
+  },
+  "severities": [
+    "critical",
+    "important",
+    "suggestion"
+  ],
+  "verdicts": [
+    "accept",
+    "revise",
+    "veto"
+  ],
+  "grades": [
+    "deterministic",
+    "inferential"
+  ],
+  "workOrder": {
+    "required": [
+      "id",
+      "party",
+      "line",
+      "items",
+      "instances"
+    ],
+    "item": {
+      "required": [
+        "id"
+      ],
+      "optional": [
+        "spec",
+        "diff"
+      ]
+    },
+    "doc": "a dispatch order: which party, on which line, how many instances of each seat, against which items; scripts/dispatch.mjs plan validates it"
+  }
+}

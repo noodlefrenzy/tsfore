@@ -1,0 +1,79 @@
+{
+  "title": "tsfore results site: choose the visual world (re-roll)",
+  "question": "The re-roll assigned the Market Terminal. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Market Terminal",
+      "kicker": "THE ROLL",
+      "lineage": "1990s financial terminals: amber-on-black panes, function-key commands",
+      "thesis": "The models are run like securities: each family gets a ticker pane, each series a quote line, and findings print as terminal news.",
+      "palette": [
+        "#000000",
+        "#ffa028",
+        "#e8e8e8",
+        "#3fb6ff",
+        "#ff433d",
+        "#4af6c3"
+      ],
+      "materials": [
+        "fixed-width panes",
+        "function-key command bar",
+        "tabular numerals everywhere"
+      ],
+      "viewport": "A command bar (TSFR <GO>) over three side-by-side family panes, STATS / TIMESTRAL / CHRONOS-2, each with rel_MASE, rel_WQL and coverage, with a scrolling findings tape beneath.",
+      "risk": "Can read as a finance costume over an ML result; prose must stay readable, not all-caps mono."
+    },
+    {
+      "id": "challenger-botanical-folio",
+      "label": "Botanical Folio",
+      "lineage": "fixed-scale botanical plates through the seasons",
+      "thesis": "Each of 11 series a plate at one fixed scale; the three families drawn side by side on every plate.",
+      "case": "Fixed-scale plates are honest small multiples; fuses well, but cream plates edge toward the default look.",
+      "hero": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/editorial-sequence-montage-botanical-folio-season.webp"
+    },
+    {
+      "id": "challenger-jcard",
+      "label": "Mixtape J-Card",
+      "lineage": "hand-lettered cassette inlays",
+      "thesis": "Side A finance, Side B pairs; findings as a timed tracklist, corrections inked over.",
+      "case": "Charming and the strike-through corrections fit; fuses poorly because dense tables fight hand lettering.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-cassette-j-card-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/vernacular-ephemera-cassette-j-card.webp"
+    },
+    {
+      "id": "challenger-tensegrity",
+      "label": "Tensegrity Column",
+      "lineage": "rod-and-cord tension sculpture",
+      "thesis": "Each model a node held by tension cords whose thickness is effect size and p-value.",
+      "case": "Fuses poorly because structural forces map loosely onto forecast errors and hurt clarity.",
+      "hero": "https://impeccable.style/worlds/cards/kinetic-sculpture-automata-tensegrity-breathing-column-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/kinetic-sculpture-automata-tensegrity-breathing-column.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "An ML benchmark results page: leaderboard table, bar charts, findings and methodology.",
+    "viewport": "Title and one-line verdict over a sortable leaderboard, charts below.",
+    "palette": [
+      "#ffffff",
+      "#111827",
+      "#2563eb",
+      "#e5e7eb"
+    ],
+    "risk": "Familiar to the point of forgettable."
+  },
+  "steer": true,
+  "record": {
+    "seedKey": "982665b6",
+    "scope": "direction",
+    "mode": "read",
+    "answer": "assigned",
+    "answeredAt": "2026-10-18",
+    "rerollOf": "df8914cf",
+    "assignedIndex": 7
+  }
+}

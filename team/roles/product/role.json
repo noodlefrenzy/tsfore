@@ -1,0 +1,20 @@
+{
+  "may": [
+    "read",
+    "web",
+    "write:docs"
+  ],
+  "must-not": [
+    "run",
+    "write:src",
+    "write:tests",
+    "write:infra"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "acceptance-criteria-present",
+      "claim": "Every item in Ready carries acceptance criteria."
+    }
+  ]
+}

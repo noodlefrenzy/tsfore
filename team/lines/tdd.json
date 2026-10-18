@@ -1,0 +1,44 @@
+{
+  "name": "tdd",
+  "$comment": "Red, green, review. A work item moves through stations in order; the station that reviews an item must not be held by the instance that coded it.",
+  "stations": [
+    {
+      "name": "red",
+      "seat": "tara",
+      "emits": "tests"
+    },
+    {
+      "name": "green",
+      "seat": "sato",
+      "needs": [
+        "tests"
+      ],
+      "emits": "change"
+    },
+    {
+      "name": "review",
+      "seat": "review-party",
+      "needs": [
+        "change"
+      ],
+      "emits": "verdicts"
+    }
+  ],
+  "constraints": [
+    {
+      "rule": "order",
+      "stations": [
+        "red",
+        "green",
+        "review"
+      ]
+    },
+    {
+      "rule": "distinct-instance",
+      "stations": [
+        "green",
+        "review"
+      ]
+    }
+  ]
+}

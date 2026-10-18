@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-18T01:00:00Z",
+  "title": "Design System: tsfore results site",
+  "extensions": {
+    "colorMeta": {
+      "amber": { "role": "primary", "displayName": "Terminal Amber", "tonalRamp": ["#3a2100", "#5c3500", "#874f00", "#b56c00", "#e08a10", "#ffa028", "#ffc277", "#ffe3bf"] },
+      "better": { "role": "positive", "displayName": "Beats Baseline", "tonalRamp": ["#0a2540", "#123a63", "#1b5188", "#2a6db0", "#3a8bd8", "#4aa8ff", "#8cc8ff", "#cde6ff"] },
+      "worse": { "role": "negative", "displayName": "Loses to Baseline", "tonalRamp": ["#3d0d09", "#621711", "#8a231a", "#b53024", "#df4335", "#ff5a4e", "#ff958c", "#ffd0cc"] },
+      "fam-timestral": { "role": "category", "displayName": "Timestral Teal" },
+      "fam-chronos": { "role": "category", "displayName": "Chronos Violet" },
+      "fam-stats": { "role": "category", "displayName": "Statistics White" }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Wire Headline", "purpose": "The one news headline; Archivo at font-stretch 70%." },
+      "section": { "displayName": "Section Head", "purpose": "Section titles; Archivo at font-stretch 75%." },
+      "quote": { "displayName": "Quote", "purpose": "Large pane values; Martian Mono at font-stretch 87.5%." },
+      "data": { "displayName": "Data", "purpose": "Tables, keys, ticker." },
+      "label": { "displayName": "Label", "purpose": "Uppercase metric labels and stamps." }
+    },
+    "motion": [
+      { "name": "state-fade", "value": "160ms ease-out", "purpose": "Hover and selection colour changes." },
+      { "name": "cell-fade", "value": "220ms ease-out", "purpose": "Quote-board cell tint on metric switch." },
+      { "name": "tape", "value": "90s linear infinite", "purpose": "Ticker marquee; paused on hover/focus and under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "620px" },
+      { "name": "single", "value": "860px" },
+      { "name": "dossier", "value": "1080px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Function Key",
+      "kind": "nav",
+      "refersTo": "function-key",
+      "description": "Numbered section key in the command bar; amber when its section is in view.",
+      "html": "<nav class=\"ds-keys\"><a href=\"#\" aria-current=\"true\"><kbd>1</kbd>SUMM</a><a href=\"#\"><kbd>2</kbd>FAMILIES</a></nav>",
+      "css": ".ds-keys { display: flex; background: #000; font-family: 'Martian Mono', monospace; font-stretch: 87.5%; font-size: 12px; border-bottom: 1px solid #474747; } .ds-keys a { display: flex; align-items: center; gap: 7px; padding: 12px; color: #a3a3a3; text-decoration: none; border-right: 1px solid #2b2b2b; transition: color 160ms ease-out, background-color 160ms ease-out; } .ds-keys a:hover { color: #ececec; background: #141414; } .ds-keys a:focus-visible { outline: 2px solid #ffa028; outline-offset: 2px; } .ds-keys a[aria-current='true'] { color: #ffa028; background: #1d1205; } .ds-keys kbd { display: inline-grid; place-items: center; min-width: 18px; height: 18px; background: #ffa028; color: #1a0f00; font-weight: 700; font-family: inherit; }"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "chip",
+      "refersTo": "segment",
+      "description": "Radio group for suite and metric; selected segment filled amber.",
+      "html": "<div class=\"ds-seg\" role=\"radiogroup\"><button role=\"radio\" aria-checked=\"true\">MASE</button><button role=\"radio\" aria-checked=\"false\">WQL</button></div>",
+      "css": ".ds-seg { display: inline-flex; border: 1px solid #474747; } .ds-seg button { font-family: 'Martian Mono', monospace; font-stretch: 87.5%; font-size: 12px; font-weight: 600; background: #000; color: #a3a3a3; border: 0; padding: 8px 12px; cursor: pointer; transition: background-color 160ms ease-out, color 160ms ease-out; } .ds-seg button + button { border-left: 1px solid #474747; } .ds-seg button:hover { color: #ececec; background: #141414; } .ds-seg button:focus-visible { outline: 2px solid #ffa028; outline-offset: 2px; } .ds-seg button[aria-checked='true'] { background: #ffa028; color: #1a0f00; }"
+    },
+    {
+      "name": "Family Pane Quote",
+      "kind": "card",
+      "refersTo": "pane",
+      "description": "One metric quote inside a family pane; the leading value across families is amber.",
+      "html": "<dl class=\"ds-quote\"><dt>REL MASE</dt><dd class=\"lead\">0.848</dd></dl>",
+      "css": ".ds-quote { background: #0b0b0b; padding: 10px 14px; margin: 0; border: 1px solid #2b2b2b; } .ds-quote dt { font-family: 'Martian Mono', monospace; font-stretch: 87.5%; font-size: 11px; color: #7a7a7a; letter-spacing: 0.06em; } .ds-quote dd { margin: 2px 0 0; font-family: 'Martian Mono', monospace; font-stretch: 87.5%; font-size: 28px; font-weight: 600; color: #ececec; } .ds-quote dd.lead { color: #ffa028; }"
+    },
+    {
+      "name": "Claim Stamp",
+      "kind": "custom",
+      "description": "Status of an earlier claim: held, revised or overturned.",
+      "html": "<span class=\"ds-stamp held\">HELD</span> <span class=\"ds-stamp revised\">REVISED</span> <span class=\"ds-stamp over\">OVERTURNED</span>",
+      "css": ".ds-stamp { font-family: 'Martian Mono', monospace; font-stretch: 87.5%; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 7px; border: 1px solid currentColor; } .ds-stamp.held { color: #4aa8ff; } .ds-stamp.revised { color: #ffa028; } .ds-stamp.over { color: #000; background: #ff5a4e; border-color: #ff5a4e; }"
+    },
+    {
+      "name": "Quote Board Cell",
+      "kind": "custom",
+      "description": "Score relative to the baseline; tint by log-ratio, number always printed, best outlined.",
+      "html": "<table class=\"ds-board\"><tr><td style=\"--cell: color-mix(in srgb, #4aa8ff 40%, transparent)\">0.639</td><td class=\"best\" style=\"--cell: color-mix(in srgb, #4aa8ff 42%, transparent)\">0.637</td><td style=\"--cell: color-mix(in srgb, #ff5a4e 12%, transparent)\">1.020</td></tr></table>",
+      "css": ".ds-board { border-collapse: collapse; font-family: 'Martian Mono', monospace; font-stretch: 87.5%; font-size: 12px; background: #0b0b0b; } .ds-board td { padding: 7px 10px; text-align: right; color: #ececec; background: var(--cell, transparent); border-bottom: 1px solid #1b1b1b; } .ds-board td.best { box-shadow: inset 0 0 0 1px #ffa028; font-weight: 700; color: #fff; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Market Terminal",
+    "overview": "Model families quoted like securities: a pane per family, a quote grid per series, findings on a ticker, corrections stamped. Terminal grammar for data and navigation; proportional Archivo for prose.",
+    "keyCharacteristics": ["True black with hairline rules", "Amber chrome only", "Blue/red quote ink with printed numbers", "Martian Mono at 87.5% width for data", "One authored motion: the ticker"],
+    "rules": [
+      { "name": "Amber Is Chrome", "body": "Amber marks commands, selection and the leading value, never decoration.", "section": "colors" },
+      { "name": "Numbers Always Printed", "body": "Colour never carries a value alone.", "section": "colors" },
+      { "name": "Mono Means Data", "body": "Martian Mono for data, commands and labels; prose stays in Archivo.", "section": "typography" }
+    ],
+    "dos": ["Generate every figure from site/data.js", "Keep tables in their own scroll region"],
+    "donts": ["No rounded corners, shadows, gradients or glass", "No family colour meaning better or worse", "No second motion"]
+  }
+}

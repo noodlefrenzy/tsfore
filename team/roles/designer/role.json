@@ -1,0 +1,20 @@
+{
+  "may": [
+    "read",
+    "write:docs",
+    "web"
+  ],
+  "must-not": [
+    "run",
+    "write:src",
+    "write:tests",
+    "write:infra"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "design-profile-present",
+      "claim": "The project has a design profile."
+    }
+  ]
+}

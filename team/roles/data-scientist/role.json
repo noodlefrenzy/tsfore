@@ -1,0 +1,9 @@
+{
+  "may": ["read", "run", "write:src", "write:docs", "web", "notebook"],
+  "must-not": ["write:tests", "write:infra"],
+  "lenses": [],
+  "checks": [
+    { "id": "notebook-outputs-clean", "claim": "No committed notebook carries cell outputs." },
+    { "id": "no-pii-in-telemetry", "claim": "No telemetry event schema carries a personal identifier without a recorded consent basis." }
+  ]
+}

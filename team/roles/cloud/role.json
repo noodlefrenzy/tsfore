@@ -1,0 +1,9 @@
+{
+  "may": ["read", "run", "write:infra", "write:docs", "web"],
+  "must-not": ["write:src", "write:tests"],
+  "lenses": [],
+  "checks": [
+    { "id": "no-unjustified-public-endpoints", "claim": "Every public endpoint in the infrastructure code has a written justification." },
+    { "id": "pricing-current", "claim": "Every price in a cost estimate cites a source dated within the last quarter." }
+  ]
+}

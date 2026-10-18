@@ -1,0 +1,35 @@
+{
+  "may": [
+    "read",
+    "run",
+    "write:docs"
+  ],
+  "must-not": [
+    "write:src",
+    "write:tests",
+    "write:infra"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "debt-markers",
+      "claim": "Every summon: marker in the tree is in the debt register, and no register entry points at a marker that is gone."
+    },
+    {
+      "id": "line-respected",
+      "claim": "Every item's stations ran in line order, and no instance held both the coding and the reviewing station for one item."
+    },
+    {
+      "id": "work-item-exists",
+      "claim": "A board item exists for the clarified work before any code is written."
+    },
+    {
+      "id": "board-statuses",
+      "claim": "The board carries all five statuses."
+    },
+    {
+      "id": "product-context-present",
+      "claim": "docs/product-context.md exists and carries a Last updated line."
+    }
+  ]
+}

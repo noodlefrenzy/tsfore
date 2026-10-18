@@ -1,0 +1,96 @@
+{
+  "harness": "claude-code",
+  "fitted": true,
+  "review": "Reread against the release notes on every Claude model release and every Claude Code release that mentions subagents, tools, hooks, or frontmatter. If a release forces a change outside this file, the seam is wrong; record it against ADR-0015 reversal trigger 3.",
+  "output": {
+    "dir": ".claude/agents",
+    "file": "{name}.md"
+  },
+  "capabilities": {
+    "read": [
+      "Read",
+      "Grep",
+      "Glob"
+    ],
+    "run": [
+      "Bash"
+    ],
+    "write:src": [
+      "Write",
+      "Edit"
+    ],
+    "write:tests": [
+      "Write",
+      "Edit"
+    ],
+    "write:docs": [
+      "Write",
+      "Edit"
+    ],
+    "web": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "notebook": [
+      "NotebookEdit"
+    ],
+    "write:infra": [
+      "Write",
+      "Edit"
+    ]
+  },
+  "frontmatter": {
+    "model": "inherit"
+  },
+  "budget": {
+    "default": 20,
+    "reviewer": 15,
+    "coder": 25,
+    "tester": 20,
+    "architect": 25,
+    "challenger": 15,
+    "elicitor": 20,
+    "tracker": 20,
+    "product": 20,
+    "operator": 25,
+    "designer": 20,
+    "data-scientist": 20,
+    "writer": 20,
+    "teacher": 20,
+    "cloud": 25
+  },
+  "keys": {
+    "tools": "tools",
+    "disallowed": "disallowedTools",
+    "budget": "maxTurns"
+  },
+  "formation": "single-file",
+  "paths": {
+    "write:tests": [
+      "**/*.test.*",
+      "**/test/**",
+      "**/tests/**",
+      "**/__tests__/**"
+    ],
+    "write:docs": [
+      "docs/**",
+      "**/*.md"
+    ],
+    "write:infra": [
+      ".github/**",
+      "Dockerfile*",
+      "**/*.tf",
+      "**/*.bicep",
+      "**/*.cfn.*",
+      "infra/**",
+      "deploy/**"
+    ]
+  },
+  "delegation": null,
+  "dispatch": {
+    "concurrency": 10,
+    "depth": 1,
+    "isolation": "worktree",
+    "$comment": "expected to expire: the subagent concurrency and nesting limits moved twice in 2026; reread with the review note above"
+  }
+}

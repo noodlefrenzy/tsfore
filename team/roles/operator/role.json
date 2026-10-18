@@ -1,0 +1,11 @@
+{
+  "may": ["read", "run", "write:infra", "write:docs", "web"],
+  "must-not": ["write:src", "write:tests"],
+  "lenses": [],
+  "checks": [
+    { "id": "ci-green", "claim": "The pipeline's checks pass on the current head." },
+    { "id": "config-manifest-current", "claim": "Every variable in the example environment file appears in the configuration manifest, and vice versa." },
+    { "id": "versions-pinned", "claim": "Base images, providers, and modules are pinned to a version or digest." },
+    { "id": "runbook-per-alert", "claim": "Every configured alert names a runbook that exists." }
+  ]
+}

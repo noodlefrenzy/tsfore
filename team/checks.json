@@ -1,0 +1,56 @@
+{
+  "$comment": "Project-level bindings for role checks: which command decides each claim in THIS repo. A check with no binding is judged by the model and graded inferential.",
+  "tests-green": {
+    "run": "uv run pytest -q",
+    "receipt": "the pass/fail summary lines, pasted"
+  },
+  "tests-red": {
+    "run": "uv run pytest -q",
+    "receipt": "the failing test names and their assertion messages, pasted"
+  },
+  "tests-untouched": {
+    "run": "test -z \"$(git diff --name-only HEAD -- '*.test.*' '*_test.*' test tests)\"",
+    "receipt": "exit 0 means no test file differs from HEAD; on a non-zero exit, run the diff to see which files"
+  },
+  "debt-markers": {
+    "run": "node scripts/harvest-debt.mjs",
+    "receipt": "the marker list, pasted"
+  },
+  "canon-drift": {
+    "run": "node scripts/check-canon.mjs",
+    "receipt": "the line 'canon check: OK' or the failure list"
+  },
+  "adr-numbering": {
+    "run": "node scripts/check-canon.mjs",
+    "receipt": "no 'ADR numbering' line in the failure list"
+  },
+  "dependency-audit": {
+    "run": "uv lock --check",
+    "receipt": "exit 0: uv.lock matches pyproject (resolved under exclude-newer). No CVE scanner is wired yet, so CVE claims stay inferential."
+  },
+  "log": ".summon/team-log.jsonl",
+  "disagreement-rate": {
+    "run": "node scripts/team-log.mjs dissent --log .summon/team-log.jsonl --last 10 --exclude negative-control",
+    "receipt": "the rate line: N items, M non-unanimous; exit 1 only on a full window with rate 0"
+  },
+  "line-respected": {
+    "run": "node scripts/team-log.mjs check --log .summon/team-log.jsonl --line tdd",
+    "receipt": "the summary line; a violation names the item, stations, and instance"
+  },
+  "ci-green": {
+    "run": "node scripts/check-canon.mjs && uv run ruff check . && uv run pytest -q",
+    "receipt": "'canon check: OK', ruff 'All checks passed!', and the pytest summary line"
+  },
+  "negative-control": {
+    "run": "node scripts/team-log.mjs control --log .summon/team-log.jsonl --item negative-control --lenses simplicity,test-quality,security,conformance",
+    "receipt": "the control line and the verdict per lens (verdicts are information; presence is the claim)"
+  },
+  "installs-and-builds": {
+    "run": "uv sync --locked --all-extras",
+    "receipt": "the last line of uv's output"
+  },
+  "product-context-present": {
+    "run": "test -f docs/product-context.md && grep -q 'Last updated' docs/product-context.md",
+    "receipt": "exit 0; fails until /kickoff or the product seat fills docs/product-context.md"
+  }
+}

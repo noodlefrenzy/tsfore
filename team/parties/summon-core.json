@@ -1,0 +1,125 @@
+{
+  "name": "summon-core",
+  "harness": "claude-code",
+  "view": "jrpg-16bit",
+  "members": [
+    {
+      "role": "elicitor",
+      "persona": "cam"
+    },
+    {
+      "role": "product",
+      "persona": "pat"
+    },
+    {
+      "role": "architect",
+      "persona": "archie"
+    },
+    {
+      "role": "tester",
+      "persona": "tara"
+    },
+    {
+      "role": "coder",
+      "persona": "sato"
+    },
+    {
+      "role": "reviewer",
+      "lens": "simplicity",
+      "persona": "vik"
+    },
+    {
+      "role": "reviewer",
+      "lens": "security",
+      "persona": "pierrot"
+    },
+    {
+      "role": "challenger",
+      "persona": "wei"
+    },
+    {
+      "role": "tracker",
+      "persona": "grace"
+    },
+    {
+      "role": "operator",
+      "persona": "ines"
+    },
+    {
+      "role": "designer",
+      "persona": "dani"
+    },
+    {
+      "role": "data-scientist",
+      "persona": "debra"
+    },
+    {
+      "role": "writer",
+      "persona": "diego"
+    },
+    {
+      "role": "teacher",
+      "persona": "prof"
+    },
+    {
+      "role": "cloud",
+      "persona": "cloud"
+    }
+  ],
+  "formations": [
+    {
+      "name": "review-party",
+      "role": "reviewer",
+      "members": [
+        {
+          "persona": "vik",
+          "lens": "simplicity"
+        },
+        {
+          "persona": "tara",
+          "lens": "test-quality"
+        },
+        {
+          "persona": "pierrot",
+          "lens": "security"
+        },
+        {
+          "persona": "archie",
+          "lens": "conformance"
+        }
+      ],
+      "conditional": [
+        {
+          "persona": "ines",
+          "lens": "operational",
+          "when": "the change alters application behaviour (not docs-only, not CI-only)",
+          "paths": [
+            "src/**",
+            "packages/**/src/**",
+            "scripts/**",
+            "!**/*.md",
+            "!.github/**"
+          ]
+        },
+        {
+          "persona": "dani",
+          "lens": "accessibility",
+          "when": "the change touches UI files",
+          "paths": [
+            "**/*.svelte",
+            "**/*.tsx",
+            "**/*.jsx",
+            "**/*.vue",
+            "**/*.css",
+            "**/*.scss",
+            "**/*.astro",
+            "site/**"
+          ]
+        }
+      ]
+    }
+  ],
+  "lines": [
+    "tdd"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "may": [
+    "read",
+    "run",
+    "write:tests"
+  ],
+  "must-not": [
+    "write:src"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "tests-red",
+      "claim": "Each new test fails before the implementation exists, for the reason the test names."
+    },
+    {
+      "id": "tests-green",
+      "claim": "The suite passes after the implementation."
+    },
+    {
+      "id": "no-wall-clock",
+      "claim": "No new test reads the real clock."
+    }
+  ]
+}

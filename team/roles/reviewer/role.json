@@ -1,0 +1,63 @@
+{
+  "may": [
+    "read",
+    "run"
+  ],
+  "must-not": [
+    "write:src",
+    "write:tests",
+    "write:docs"
+  ],
+  "lenses": [
+    "simplicity",
+    "test-quality",
+    "security",
+    "conformance",
+    "operational",
+    "accessibility"
+  ],
+  "checks": [
+    {
+      "id": "tests-green",
+      "claim": "The suite passes on the change as submitted.",
+      "lens": "test-quality"
+    },
+    {
+      "id": "test-count",
+      "claim": "The number of tests the change claims to add matches the number the suite gained.",
+      "lens": "test-quality"
+    },
+    {
+      "id": "debt-markers",
+      "claim": "Every deliberate shortcut carries a summon: marker; none is stale.",
+      "lens": "simplicity"
+    },
+    {
+      "id": "canon-drift",
+      "claim": "Cross-file canon facts still agree.",
+      "lens": "conformance"
+    },
+    {
+      "id": "dependency-audit",
+      "claim": "No dependency in the change carries a known vulnerability.",
+      "lens": "security"
+    },
+    {
+      "id": "disagreement-rate",
+      "claim": "Over the last ten real reviews (the planted fixture excluded), the lenses did not return unanimous verdicts every time; fewer than ten is a sample, not a signal."
+    },
+    {
+      "id": "negative-control",
+      "claim": "On the planted-defect fixture, every lens returns at least one finding in its latest round."
+    },
+    {
+      "id": "line-respected",
+      "claim": "The instance reviewing an item is not the instance that coded it."
+    },
+    {
+      "id": "contrast-motion",
+      "claim": "Stylesheets in the change meet the contrast floor and respect reduced motion.",
+      "lens": "accessibility"
+    }
+  ]
+}

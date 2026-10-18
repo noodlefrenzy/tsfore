@@ -1,0 +1,65 @@
+# agent-notes: { ctx: "tsfore Python project: deps, uv sources, tooling", deps: [docs/adrs/0014-python-forecasting-harness-stack.md, docs/dependency-decisions.md], state: active, last: "claude@2026-10-18", key: ["exclude-newer enforces ADR-0010 cooldown for PyPI deps; git deps are pinned by SHA instead"] }
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tsfore"
+version = "0.1.0"
+description = "Playground for time series forecasting: baselines vs. foundation models, scored by rolling-origin backtests"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md"]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "statsforecast>=2.0",
+]
+
+[project.optional-dependencies]
+# Timestral pulls torch; kept optional so baselines and metrics run without it.
+timestral = [
+    "timestral",
+]
+# Amazon Chronos-2, the comparison foundation model; also pulls torch, plus transformers.
+chronos = [
+    "chronos-forecasting>=2.3,<3",
+]
+
+[project.scripts]
+tsfore = "tsfore.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[tool.uv]
+# ADR-0010 release-age cooldown: never resolve a PyPI release newer than this date.
+# Bump deliberately (and re-run `uv lock`) when upgrading.
+exclude-newer = "2026-10-14T00:00:00Z"
+
+[tool.uv.sources]
+# Not on PyPI. Pinned by commit; see docs/dependency-decisions.md for the cooldown override.
+timestral = { git = "https://github.com/mistralai/timestral.git", rev = "a534bdbd244d64f3d9d743f46c7bf6fc330ed4ff" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tsfore"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "weights: needs real Timestral or Chronos-2 weights from the Hugging Face Hub (network or warm cache)",
+]
+addopts = "-m 'not weights'"
+
+[tool.ruff]
+line-length = 110
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "NPY"]
+# agent-notes headers are single long lines by spec; `ruff format` owns code line length.
+ignore = ["E501"]

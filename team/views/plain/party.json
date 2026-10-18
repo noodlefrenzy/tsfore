@@ -1,0 +1,88 @@
+{
+  "skin": "plain",
+  "title": "Summon team",
+  "members": {
+    "sato": {
+      "class": "Principal engineer",
+      "accent": "#22c55e",
+      "blurb": "Implements against existing tests."
+    },
+    "tara": {
+      "class": "Test lead",
+      "accent": "#ef4444",
+      "blurb": "Writes the failing tests first; verifies coverage."
+    },
+    "vik": {
+      "class": "Code reviewer, simplicity",
+      "accent": "#64748b",
+      "blurb": "Reads for what should not exist."
+    },
+    "pierrot": {
+      "class": "Code reviewer, security",
+      "accent": "#7f1d1d",
+      "blurb": "Reads for what the change stopped doing."
+    },
+    "archie": {
+      "class": "Architect",
+      "accent": "#22d3ee",
+      "blurb": "Writes the decision record before the code."
+    },
+    "wei": {
+      "class": "Challenger",
+      "accent": "#ec4899",
+      "blurb": "Argues the other side."
+    },
+    "cam": {
+      "class": "Elicitor",
+      "accent": "#f59e0b",
+      "blurb": "Probes your vague idea with one question at a time until the vision is concrete."
+    },
+    "grace": {
+      "class": "Tracker",
+      "accent": "#8b5cf6",
+      "blurb": "Runs the board, tracks velocity, and keeps the party moving."
+    },
+    "pat": {
+      "class": "Product owner",
+      "accent": "#9f1239",
+      "blurb": "Owns the backlog and prioritises ruthlessly. Speaks for you in proxy mode."
+    },
+    "ines": {
+      "class": "Operator",
+      "accent": "#facc15",
+      "blurb": "Owns everything between git push and production traffic."
+    },
+    "dani": {
+      "class": "Designer",
+      "accent": "#fb7185",
+      "blurb": "Design exploration, user flows, and accessibility review."
+    },
+    "debra": {
+      "class": "Data scientist",
+      "accent": "#2dd4bf",
+      "blurb": "Turns telemetry into decisions. The only one with notebook access."
+    },
+    "diego": {
+      "class": "Writer",
+      "accent": "#0e7490",
+      "blurb": "Docs, changelogs, onboarding. If it isn't documented, it doesn't exist."
+    },
+    "prof": {
+      "class": "Teacher",
+      "accent": "#a16207",
+      "blurb": "Explains the team's choices, Socratically. Assumes you're competent."
+    },
+    "cloud": {
+      "class": "Cloud specialist",
+      "accent": "#0ea5e9",
+      "blurb": "Architects and tunes any cloud for cost and reliability."
+    }
+  },
+  "formations": {
+    "review-party": {
+      "class": "Review formation",
+      "accent": "#4f46e5",
+      "blurb": "Four review lenses on one change."
+    }
+  }
+}

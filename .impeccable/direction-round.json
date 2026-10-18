@@ -1,0 +1,77 @@
+{
+  "title": "tsfore results site: choose the visual world",
+  "question": "The roll assigned the Forecast Discussion. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Forecast Discussion",
+      "kicker": "THE ROLL",
+      "lineage": "NWS Area Forecast Discussions and SPC outlook maps",
+      "thesis": "Forecasters reporting on forecasters: a dated discussion with synopsis, confidence, amendments and an extended outlook.",
+      "palette": [
+        "#0b1f33",
+        "#e9eef2",
+        "#2f7d6d",
+        "#e0a526",
+        "#c8452f"
+      ],
+      "materials": [
+        "teletext-era monospace bulletin",
+        "categorical outlook contours",
+        "issued/updated timestamps"
+      ],
+      "viewport": "A product header (ISSUED 2026-10-18, AREA: 11 FINANCE SERIES) over a SYNOPSIS paragraph and an outlook map of 11 series tinted by which family wins.",
+      "risk": "Monospace walls tire the eye if prose blocks run long; needs a proportional reading face for body text."
+    },
+    {
+      "id": "challenger-datamatics",
+      "label": "Datamatics",
+      "lineage": "Ryoji Ikeda data-sublime installations",
+      "thesis": "Every one of 744 scored windows drawn as a hairline bar; the summary is what the field adds up to.",
+      "case": "Strong on density and honesty; weaker on clarity for a reader who wants the verdict first.",
+      "hero": "https://impeccable.style/worlds/cards/ikeda-datamatics-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/ikeda-datamatics.webp"
+    },
+    {
+      "id": "challenger-star-atlas",
+      "label": "Star Atlas",
+      "lineage": "celestial chart plates",
+      "thesis": "Each series a plate, each model a star sized by skill.",
+      "case": "Fuses: rank as magnitude reads naturally; but a sky metaphor is foreign to forecasters.",
+      "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-star-atlas-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/notation-diagram-systems-star-atlas.webp"
+    },
+    {
+      "id": "challenger-cutting-bench",
+      "label": "Cutting Bench",
+      "lineage": "film editor's select rail",
+      "thesis": "Findings as frames on a rail; overturned claims hang on pins below, still visible.",
+      "case": "Corrections-on-pins fits the honesty principle well; fuses poorly because film editing means nothing to this audience.",
+      "hero": "https://impeccable.style/worlds/cards/operate-a-cutting-bench-select-rail-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/operate-a-cutting-bench-select-rail.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "An ML benchmark results page: leaderboard table, bar charts, findings and methodology.",
+    "viewport": "Title and one-line verdict over a sortable leaderboard, charts below.",
+    "palette": [
+      "#ffffff",
+      "#111827",
+      "#2563eb",
+      "#e5e7eb"
+    ],
+    "risk": "Familiar to the point of forgettable."
+  },
+  "steer": true,
+  "record": {
+    "seedKey": "df8914cf",
+    "scope": "direction",
+    "mode": "read",
+    "answer": "reroll",
+    "answeredAt": "2026-10-18",
+    "assignedIndex": 5
+  }
+}

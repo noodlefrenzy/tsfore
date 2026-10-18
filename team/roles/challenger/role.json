@@ -1,0 +1,19 @@
+{
+  "may": [
+    "read",
+    "web"
+  ],
+  "must-not": [
+    "run",
+    "write:src",
+    "write:tests",
+    "write:docs"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "citation-resolves",
+      "claim": "Every file a record cites exists at the path given."
+    }
+  ]
+}

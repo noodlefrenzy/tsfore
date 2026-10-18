@@ -1,0 +1,14 @@
+{
+  "harness": "skills",
+  "fitted": true,
+  "review": "Fitted to the Agent Skills specification (agentskills.io) and to the current consensus on how coding agents load a skills folder. Reread when the spec changes or a harness stops honouring it.",
+  "output": {
+    "dir": ".agents/skills",
+    "file": "{role}/SKILL.md"
+  },
+  "personas": false,
+  "capabilities": {},
+  "frontmatter": {},
+  "budget": {},
+  "dispatch": null
+}

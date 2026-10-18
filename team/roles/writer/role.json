@@ -1,0 +1,28 @@
+{
+  "may": [
+    "read",
+    "run",
+    "write:docs",
+    "web"
+  ],
+  "must-not": [
+    "write:src",
+    "write:tests",
+    "write:infra"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "installs-and-builds",
+      "claim": "The tree installs and builds from a clean checkout."
+    },
+    {
+      "id": "quick-start-matches",
+      "claim": "The README's quick-start commands are the ones that install and build."
+    },
+    {
+      "id": "changelog-current",
+      "claim": "The changelog has an entry for every user-facing change since the last release."
+    }
+  ]
+}

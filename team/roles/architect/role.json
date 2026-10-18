@@ -1,0 +1,23 @@
+{
+  "may": [
+    "read",
+    "run",
+    "write:docs",
+    "web"
+  ],
+  "must-not": [
+    "write:src",
+    "write:tests"
+  ],
+  "lenses": [],
+  "checks": [
+    {
+      "id": "adr-numbering",
+      "claim": "Decision records are numbered contiguously and none duplicates."
+    },
+    {
+      "id": "canon-drift",
+      "claim": "Cross-file canon facts still agree after the record lands."
+    }
+  ]
+}

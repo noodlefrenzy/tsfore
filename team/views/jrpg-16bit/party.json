@@ -1,0 +1,224 @@
+{
+  "skin": "jrpg-16bit",
+  "title": "The Review Party",
+  "source": "docs/history/design/team-hero-sprites-16bit.md",
+  "sprites": "site/src/assets/team-16bit/",
+  "members": {
+    "sato": {
+      "class": "The Forge-Knight",
+      "archetype": "Smith",
+      "epithet": "green, then clean",
+      "accent": "#22c55e",
+      "sprite": "sato.png",
+      "blurb": "Writes the production code that makes Tara's tests pass. The builder.",
+      "alt": "Sato, the team's engineer, a broad smith resting a green-glowing hammer on his shoulder"
+    },
+    "tara": {
+      "class": "The Sentinel Archer",
+      "archetype": "Ranger",
+      "epithet": "writes the failing test first",
+      "accent": "#ef4444",
+      "sprite": "tara.png",
+      "blurb": "Writes the failing test first. Holds a veto on test coverage.",
+      "alt": "Tara, the test lead, a ranger drawing a bow with a crimson-tipped arrow"
+    },
+    "vik": {
+      "class": "The Grey Warden",
+      "archetype": "Veteran",
+      "epithet": "has seen this abstraction before",
+      "accent": "#64748b",
+      "sprite": "vik.png",
+      "blurb": "Reads for simplicity and maintainability. Names problems; never fixes them.",
+      "alt": "Vik, the veteran reviewer, leaning on a tall sword-staff and holding up a loupe"
+    },
+    "pierrot": {
+      "class": "The Nightblade",
+      "archetype": "Rogue",
+      "epithet": "finds it before the attacker does",
+      "accent": "#7f1d1d",
+      "sprite": "pierrot.png",
+      "blurb": "Reads for what the change stopped doing. Holds a hard veto on security grounds.",
+      "alt": "Pierrot, the security tester, a hooded rogue in a white half-mask holding a dagger"
+    },
+    "archie": {
+      "class": "The Master Builder",
+      "archetype": "Artificer",
+      "epithet": "asks who decided this",
+      "accent": "#22d3ee",
+      "sprite": "archie.png",
+      "blurb": "Designs the system and writes the record before a line of code is written.",
+      "alt": "Archie, the team's architect, holding a rolled cyan blueprint across his body"
+    },
+    "wei": {
+      "class": "The Wildcard",
+      "archetype": "Trickster",
+      "epithet": "takes the other side",
+      "accent": "#ec4899",
+      "sprite": "wei.png",
+      "blurb": "Breaks consensus on purpose and builds the rationale afterwards.",
+      "alt": "Wei, the devil's advocate, leaning back mid-toss of a glowing magenta card"
+    },
+    "cam": {
+      "class": "The Wayfinder",
+      "archetype": "Guide",
+      "epithet": "asks what you will decide differently",
+      "accent": "#f59e0b",
+      "sprite": "cam.png",
+      "blurb": "Probes your vague idea with one question at a time until the vision is concrete.",
+      "alt": "Cam, the team's guide, a hooded traveler holding out a glowing amber lantern"
+    },
+    "grace": {
+      "class": "The Marshal",
+      "archetype": "Tactician",
+      "epithet": "knows where we are",
+      "accent": "#8b5cf6",
+      "sprite": "grace.png",
+      "blurb": "Runs the board, tracks velocity, and keeps the party moving.",
+      "alt": "Grace, the sprint marshal, raising a tall violet banner"
+    },
+    "pat": {
+      "class": "The Quartermaster-Judge",
+      "archetype": "Judge",
+      "epithet": "says no as a full sentence",
+      "accent": "#9f1239",
+      "sprite": "pat.png",
+      "blurb": "Owns the backlog and prioritises ruthlessly. Speaks for you in proxy mode.",
+      "alt": "Pat, the product lead, holding out a set of burgundy priority scales"
+    },
+    "ines": {
+      "class": "The Pipeline-Wright",
+      "archetype": "Engineer",
+      "epithet": "asks how we'll know at 3am",
+      "accent": "#facc15",
+      "sprite": "ines.png",
+      "blurb": "Owns everything between git push and production traffic.",
+      "alt": "Ines, the SRE, throwing a yellow-knobbed deploy lever with goggles on her brow"
+    },
+    "dani": {
+      "class": "The Illusion-Artificer",
+      "archetype": "Painter",
+      "epithet": "ships options in threes",
+      "accent": "#fb7185",
+      "sprite": "dani.png",
+      "blurb": "Design exploration, user flows, and accessibility review.",
+      "alt": "Dani, the designer, holding up a coral-edged interface panel and a brush"
+    },
+    "debra": {
+      "class": "The Star-Diviner",
+      "archetype": "Seer",
+      "epithet": "asks for the denominator",
+      "accent": "#2dd4bf",
+      "sprite": "debra.png",
+      "blurb": "Turns telemetry into decisions. The only one with notebook access.",
+      "alt": "Debra, the data scientist, in a pointed astronomer's hat holding a teal constellation"
+    },
+    "diego": {
+      "class": "The Lorekeeper",
+      "archetype": "Scribe",
+      "epithet": "writes for the reader, not the author",
+      "accent": "#0e7490",
+      "sprite": "diego.png",
+      "blurb": "Docs, changelogs, onboarding. If it isn't documented, it doesn't exist.",
+      "alt": "Diego, the technical writer, holding open a book with glowing teal script"
+    },
+    "prof": {
+      "class": "The Sage",
+      "archetype": "Mentor",
+      "epithet": "explains the why",
+      "accent": "#a16207",
+      "sprite": "prof.png",
+      "blurb": "Explains the team's choices, Socratically. Assumes you're competent.",
+      "alt": "Prof, the mentor, in tweed gesturing with a pointer at a floating ochre diagram"
+    },
+    "cloud": {
+      "class": "The Aeromancer",
+      "archetype": "Sky-mage",
+      "epithet": "prices the arrow on the diagram",
+      "accent": "#0ea5e9",
+      "sprite": "cloud.png",
+      "blurb": "Architects and tunes any cloud for cost and reliability.",
+      "alt": "Cloud, the cloud specialist, a sky-mage with an azure cloud floating over his staff"
+    }
+  },
+  "formations": {
+    "review-party": {
+      "class": "The Review Party",
+      "accent": "#4f46e5",
+      "sprite": "code-reviewer.png",
+      "blurb": "Not one hero, a formation. Four lenses on one diff, and they are allowed to disagree.",
+      "alt": "The Review Party: a warden, ranger, nightblade, and architect examining a glowing codex on a shared indigo stage"
+    }
+  },
+  "roles": {
+    "coder": {
+      "class": "Forge-hand",
+      "accent": "#22c55e",
+      "blurb": "An unnamed smith on the line."
+    },
+    "tester": {
+      "class": "Sentinel",
+      "accent": "#ef4444",
+      "blurb": "An unnamed archer on the line."
+    },
+    "reviewer": {
+      "class": "Warden",
+      "accent": "#64748b",
+      "blurb": "An unnamed reviewer holding one lens."
+    },
+    "architect": {
+      "class": "Builder",
+      "accent": "#22d3ee",
+      "blurb": "An unnamed architect."
+    },
+    "challenger": {
+      "class": "Trickster",
+      "accent": "#ec4899",
+      "blurb": "An unnamed challenger."
+    },
+    "elicitor": {
+      "class": "Wayfinder",
+      "accent": "#f59e0b",
+      "blurb": "An unnamed guide."
+    },
+    "tracker": {
+      "class": "Marshal",
+      "accent": "#8b5cf6",
+      "blurb": "An unnamed tracker."
+    },
+    "product": {
+      "class": "Quartermaster",
+      "accent": "#9f1239",
+      "blurb": "An unnamed product owner."
+    },
+    "operator": {
+      "class": "Pipeline-wright",
+      "accent": "#facc15",
+      "blurb": "An unnamed operator."
+    },
+    "designer": {
+      "class": "Artificer",
+      "accent": "#fb7185",
+      "blurb": "An unnamed designer."
+    },
+    "data-scientist": {
+      "class": "Diviner",
+      "accent": "#2dd4bf",
+      "blurb": "An unnamed analyst."
+    },
+    "writer": {
+      "class": "Scribe",
+      "accent": "#0e7490",
+      "blurb": "An unnamed writer."
+    },
+    "teacher": {
+      "class": "Sage",
+      "accent": "#a16207",
+      "blurb": "An unnamed teacher."
+    },
+    "cloud": {
+      "class": "Aeromancer",
+      "accent": "#0ea5e9",
+      "blurb": "An unnamed cloud specialist."
+    }
+  }
+}
