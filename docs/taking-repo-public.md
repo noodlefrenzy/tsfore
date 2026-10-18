@@ -134,8 +134,12 @@ were checked on 2026-10-18 (VERIFIED from the source pages):
 - [ ] MEATPUPPET (optional, belt and braces): GitHub can keep serving unreferenced commits
   by SHA until it garbage-collects them. If that matters to you, ask GitHub Support to run
   GC on the repo before you flip it. Otherwise, the old commits are unreachable from any ref.
-- [x] `site/` deployed to GitHub Pages. (2026-10-18, REPORTED by the owner, not verified by an agent)
-- [ ] MEATPUPPET: Settings → General → Danger Zone → **Change visibility → Public**.
+- [x] `site/` is on GitHub Pages from the `gh-pages` branch, built by `git subtree split --prefix site`.
+  `site/.nojekyll` turns Jekyll off. https://noodlefrenzy.com/tsfore/ returns 200 for the page,
+  data.js and the fonts, and shows the MIT footer. (2026-10-18, VERIFIED)
+- [x] Made public with `gh repo edit --visibility public`, after checking that no commit
+  reachable from `main` or `gh-pages` touches the S&P/VIX CSVs and that no tags are on the
+  remote. GitHub's API detects the license as MIT. (2026-10-18, VERIFIED)
 - [x] MEATPUPPET: Settings → Pages. (2026-10-18, REPORTED by the owner) Check once that the
   site's `main` links (benchmarks, LICENSE, NOTICE) resolve.
 - [ ] MEATPUPPET: Settings → Code security → turn on **secret scanning**, **push

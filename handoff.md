@@ -16,12 +16,13 @@ This is a clean slate: no work is in flight.
 
 ## Current State
 
-- **Branch:** `main`, the only branch, local and remote.
+- **Visibility:** public (2026-10-18). The license is detected as MIT.
+- **Branches:** `main` (source) and `gh-pages` (the contents of `site/` only, the Pages source).
 - **History:** the initial commit, the squash, then docs-only commits.
 - **Uncommitted changes:** none.
 - **Open PRs:** none, and none were ever opened.
 - **Tests:** `uv run pytest` gives 103 passed and 6 deselected (`-m weights`). On a fresh clone, 7 S&P/VIX tests skip until `uv run tsfore data fetch` runs. Ruff is clean.
-- **Results site:** `site/`, served by GitHub Pages. The owner reported it deployed on 2026-10-18. Its links point at `main` (`docs/benchmarks/...`, `LICENSE`, `NOTICE.md`).
+- **Results site:** https://noodlefrenzy.com/tsfore/, served from `gh-pages` (verified live on 2026-10-18). Its links point at `main` (`docs/benchmarks/...`, `LICENSE`, `NOTICE.md`).
 
 ## Starting a fresh session
 
@@ -105,6 +106,9 @@ Read `docs/code-map.md` first. Keep the repo on the Linux filesystem, not `/mnt/
   1. Gzip the run's CSV into `docs/benchmarks/data/`.
   2. Point `build()` in `scripts/build_site_data.py` at it.
   3. Rerun the script (`tests/test_site_data.py` pins the match).
+- **Refreshing the site:** after committing changes to `site/` on `main`, run
+  `git subtree split --prefix site -b gh-pages-new && git push -f origin gh-pages-new:gh-pages && git branch -D gh-pages-new`
+  (or replace this with a Pages Actions workflow).
 - **AutoARIMA dominates wall clock:** about 31 minutes for the 48-window finance run, almost all of it on the CPU.
 - **Chronos-2 `+cov` and `+joint`** are the same computation at inference, so benchmarks omit `+joint`.
 - **Example ADR:** `docs/adrs/0008-example-*` is Summon's labelled fictional example. Keep it, because `scripts/check-canon.mjs` enforces contiguous ADR numbering.
