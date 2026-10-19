@@ -85,7 +85,7 @@ components:
     padding: "{spacing.pane}"
 ---
 
-<!-- agent-notes: { ctx: "impeccable design system for the tsfore results site", deps: [site/style.css, site/index.html, PRODUCT.md], state: active, last: "claude@2026-10-18", key: ["recorded from the built site, not the plan", "sidecar: .impeccable/design.json"] } -->
+<!-- agent-notes: { ctx: "impeccable design system for the tsfore results site", deps: [site/style.css, site/index.html, PRODUCT.md], state: active, last: "claude@2026-10-19", key: ["recorded from the built site, not the plan", "frontmatter tokens are the terminal world; the two alternates are recorded under Alternate designs", "sidecar: .impeccable/design.json"] } -->
 
 ## Overview
 
@@ -130,6 +130,7 @@ Square corners everywhere (`rounded.none`). Colour chips are 9px squares. Status
 - **Quote board:** series × model table, sticky row headers, family group headers, cells tinted by log-ratio to the baseline (or by distance from 0.80 for coverage), best per row outlined in amber, footer row with the suite score. Suite and metric switch through segmented radio groups (arrow keys work).
 - **Paired-test row:** pair, win-share bar diverging from a 50% centre line, won/n, p-value (amber when p < 0.05).
 - **Claim stamp:** HELD (blue outline), REVISED (amber outline), OVERTURNED (red fill; the claim text struck through).
+- **Design tabs:** a strip above the command bar (Terminal / Form guide / Release) switches the whole page between three designs. Each stylesheet styles the strip in its own language.
 - **Terms list:** a two-column grid of ruled panes (Models, Scores, Protocol, Statistics) that collapses to one column at 860px. Each term has a mono name, a short Archivo definition and a mono line of explainer links. Arxiv links are pinned to a version and Wikipedia links to a revision. A term reached by `#term-*` turns amber through `:target`.
 - **Order row:** priority block (P1 filled amber, P2 amber outline, P3 grey outline), test name and description, "Could change" consequence.
 
@@ -142,3 +143,27 @@ Square corners everywhere (`rounded.none`). Colour chips are 9px squares. Status
 - Don't add rounded corners, shadows, gradients or glass.
 - Don't use family colours to mean better or worse, or the blue/red quote ink to identify a family.
 - Don't add a second motion; state transitions stay at 160–220ms colour fades.
+
+## Alternate designs
+
+Two more worlds share the same markup, data and prose, and the visitor picks one from the design tabs. `site/design.js` swaps the stylesheet (it loads the new one before dropping the old, so nothing flashes) and the chrome labels: brand line, key names, run status and claim stamps. The inline head script picks the sheet before first paint from `?design=` or localStorage. Every design defines the variables `app.js` reads by name (`--amber`, `--better`, `--worse`, `--fam-*`, `--muted`, `--rule-hi`). `--amber` means the lead/selection role, whatever its colour. The three designs have not been consolidated into a shared token file. impeccable's detector flags the alternates' sizes and colours as off this file's ramp, because the frontmatter records only the terminal.
+
+### Form guide (`site/form.css`, seed f73d17b5)
+
+The benchmark as a day's race card. Series are races, numbered down the quote board, and models are entries. The paired tests are match races and the corrections are stewards' rulings: OFFICIAL, AMENDED, DISQUALIFIED.
+
+- **Scene:** a printout on a desk in daylight. Grey newsprint ground (`#e6e4dd`), black ink, no shadows or corners. Heavy 3px column rules over 1px row rules, plus a double rule under the masthead.
+- **Type:** Archivo only. Agate tables at `font-stretch` 66%; banner headline and section heads in 900-weight caps at 62%; brand at 125%; prose at normal width. Code stays in the system mono.
+- **Colour:** the lead figure, the current key and selected segments are reversed out in black. Better and worse use blue `#1c4f9c` and red `#c0142b`. Family inks: black, teal `#006d56`, violet `#6538a0`. The member tables carry saddle-cloth blocks numbered 1–9 in the standard cloth colours. These are identification only, never good or bad.
+- **Results band:** the ticker held still. A black band of every model's rel MASE and the news lines. It wraps on desktop and becomes one scrolling row under 620px. No motion.
+- Significance is bold plus an asterisk.
+
+### Statistical release (`site/release.css`, seed fc2cc5a6)
+
+The benchmark published the way its source series were: the headline estimate, its release line, Table A of the families, ruled tables, revisions marked and a technical note. It uses a generic release form only, with no agency names, seals or marks.
+
+- **Scene:** a laptop or a printed copy in an office. White ground, Public Sans (the self-hosted OFL face), sentence case.
+- **Tables:** booktabs rules, 2px `#1b1f23` above and below and 1px under the header row. Family spanners sit over a hairline.
+- **Colour:** release navy `#1d3557` for chrome, links, selection and the lead (marked with a superscript ¹ and explained in the note). Better and worse use ColorBrewer RdBu (`#2166ac` / `#b2182b`). Okabe-Ito-derived family inks: black, `#00775a`, `#a2407a`.
+- **Content:** the ticker is hidden. Claim stamps read Confirmed, Revised, Withdrawn. The slope chart is captioned "Chart 1" and notes are prefixed "Note:".
+- **Shape:** small 2–3px radii on stamps, priorities and segments are the only rounding.

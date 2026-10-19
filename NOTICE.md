@@ -1,4 +1,4 @@
-<!-- agent-notes: { ctx: "third-party licenses for code, weights, data, fonts", deps: [LICENSE, docs/attributions.md, data/finance/README.md, docs/dependency-decisions.md], state: active, last: "claude@2026-10-18", key: ["LICENSE itself carries no agent-notes: a header would break GitHub's license detection"] } -->
+<!-- agent-notes: { ctx: "third-party licenses for code, weights, data, fonts", deps: [LICENSE, docs/attributions.md, data/finance/README.md, docs/dependency-decisions.md], state: active, last: "claude@2026-10-19", key: ["LICENSE itself carries no agent-notes: a header would break GitHub's license detection"] } -->
 # Third-party notices
 
 tsfore's own code and docs are under the [MIT License](LICENSE), Copyright (c) 2026
@@ -12,6 +12,7 @@ Michael Lanzetta. The material below belongs to others and keeps its own terms.
 | Passages adapted from mattpocock/skills (via Summon) | listed in [`docs/attributions.md`](docs/attributions.md) | MIT, Copyright (c) 2026 Matt Pocock, [`docs/licenses/mattpocock-skills-LICENSE.txt`](docs/licenses/mattpocock-skills-LICENSE.txt) |
 | Martian Mono font | `site/fonts/martian-mono-*.woff2` | SIL OFL 1.1, [`site/fonts/OFL-martianmono.txt`](site/fonts/OFL-martianmono.txt) |
 | Archivo font | `site/fonts/archivo-*.woff2` | SIL OFL 1.1, [`site/fonts/OFL-archivo.txt`](site/fonts/OFL-archivo.txt) |
+| Public Sans font | `site/fonts/public-sans-*.woff2` | SIL OFL 1.1, [`site/fonts/OFL-publicsans.txt`](site/fonts/OFL-publicsans.txt) |
 | Finance data snapshots | `data/finance/*.csv` | per series, see [`data/finance/README.md`](data/finance/README.md) |
 
 ## Downloaded at run time, not redistributed

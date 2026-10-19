@@ -60,7 +60,7 @@ cli ── backtest, evaluate, datasets, data, forecasters.build
 
 ## Results site
 
-`site/` is a static, build-free page for GitHub Pages (market-terminal design; see `DESIGN.md` and `PRODUCT.md`). `scripts/build_site_data.py` turns the gzipped per-window CSVs in `docs/benchmarks/data/` into `site/data.js`, reusing `tsfore.evaluate.leaderboard`; `site/app.js` renders every table and chart from it. After a new benchmark run, gzip its CSV into `docs/benchmarks/data/`, point `build()` at it, and rerun the script.
+`site/` is a static, build-free page for GitHub Pages in three switchable designs over one markup: market terminal (`style.css`), form guide (`form.css`) and statistical release (`release.css`); `site/design.js` swaps the sheet and chrome labels, and `?design=` or localStorage remembers the choice (see `DESIGN.md` and `PRODUCT.md`). `scripts/build_site_data.py` turns the gzipped per-window CSVs in `docs/benchmarks/data/` into `site/data.js`, reusing `tsfore.evaluate.leaderboard`; `site/app.js` renders every table and chart from it. After a new benchmark run, gzip its CSV into `docs/benchmarks/data/`, point `build()` at it, and rerun the script.
 
 ## Adding a model
 

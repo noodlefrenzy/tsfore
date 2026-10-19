@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- agent-notes: { ctx: "tsfore results site: market-terminal single page", deps: [site/style.css, site/app.js, site/data.js, DESIGN.md, PRODUCT.md], state: active, last: "claude@2026-10-18", key: ["static for GitHub Pages; no build step", "direction contract is the first child of body"] } -->
+<!-- agent-notes: { ctx: "tsfore results site: market-terminal single page", deps: [site/style.css, site/form.css, site/release.css, site/design.js, site/app.js, site/data.js, DESIGN.md, PRODUCT.md], state: active, last: "claude@2026-10-19", key: ["static for GitHub Pages; no build step", "direction contract is the first child of body", "three designs over one markup: style.css, form.css, release.css; design.js swaps them"] } -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>tsfore · Foundation models vs statistics</title>
 <meta name="description" content="Zero-shot Timestral and Chronos-2 against classical statistical baselines on 11 public finance series: where each family wins, where it loses, how sure we are, and what to test next.">
 <meta name="color-scheme" content="dark">
-<link rel="preload" href="fonts/martian-mono-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" id="design-css">
+<script>
+  // Pick the chosen design's sheet before first paint; design.js owns switching after load.
+  (() => {
+    const sheets = { terminal: "style.css", form: "form.css", release: "release.css" };
+    let d = new URLSearchParams(location.search).get("design");
+    try { d = d || localStorage.getItem("tsfore-design"); } catch (e) {}
+    if (!sheets[d]) d = "terminal";
+    document.documentElement.dataset.design = d;
+    document.getElementById("design-css").href = sheets[d];
+    if (d !== "terminal") document.querySelector('meta[name="color-scheme"]').content = "light";
+    const fonts = { terminal: ["martian-mono", "archivo"], form: ["archivo"], release: ["public-sans"] };
+    for (const f of fonts[d]) {
+      const l = Object.assign(document.createElement("link"), { rel: "preload", as: "font", type: "font/woff2", crossOrigin: "anonymous", href: `fonts/${f}-normal-latin.woff2` });
+      document.head.appendChild(l);
+    }
+  })();
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Cpath d='M2 12 L6 7 L9 9 L14 3' stroke='%23ffa028' stroke-width='2' fill='none'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -21,20 +36,39 @@ FIRST VIEWPORT: Command bar with numbered function keys; a wire headline in Arch
 FORM: grounded list position 7 (trading terminal); seed key 982665b6 (re-roll of df8914cf).
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->
+<!--
+ALTERNATE DESIGN, FORM GUIDE (form.css)
+THESIS: The benchmark as a day's race card: series are races, models are numbered entries, paired tests are match races, corrections are stewards' rulings. Refuses the leaderboard page and the dark dashboard.
+OWN-WORLD: Grey newsprint, black ink, heavy 3px column rules; Archivo cut to 62-66% width for agate tables and banner caps; reversed-out black for the lead figure and the current key; saddle-cloth number blocks in the standard cloth colours; blue/red quote ink.
+FIRST VIEWPORT: Masthead bar, the results board held still in a black band, a banner headline in condensed caps, three numbered entries with their figures.
+FORM: grounded list position 4 (racing form past performances); seed key f73d17b5.
+ALTERNATE DESIGN, STATISTICAL RELEASE (release.css)
+THESIS: The benchmark published the way its series were: the estimate with its uncertainty and its release line, ruled tables, revisions marked, a technical note. Generic release form; no agency marks.
+OWN-WORLD: White paper, Public Sans, booktabs rules (2px over 1px), release navy for chrome and the lead, ColorBrewer RdBu for better/worse, Okabe-Ito family inks.
+FIRST VIEWPORT: Contents bar, a navy rule, the headline estimate and its release line, Table A of the three families.
+FORM: grounded list position 3 (federal statistical release); seed key fc2cc5a6.
+-->
 <a class="skip" href="#summary">Skip to results</a>
+
+<div class="designs" role="group" aria-label="Site design">
+  <span class="designs__label">Design</span>
+  <button type="button" data-design="terminal" aria-pressed="true">Terminal</button>
+  <button type="button" data-design="form" aria-pressed="false">Form guide</button>
+  <button type="button" data-design="release" aria-pressed="false">Release</button>
+</div>
 
 <header class="bar" role="banner">
   <div class="bar__brand"><span class="brand">TSFORE</span><span class="cmd" aria-hidden="true">FMVS <span class="go">&lt;GO&gt;</span></span></div>
   <nav class="keys" aria-label="Sections">
-    <a href="#summary" data-key="1"><kbd>1</kbd>SUMM</a>
-    <a href="#families" data-key="2"><kbd>2</kbd>FAMILIES</a>
-    <a href="#series" data-key="3"><kbd>3</kbd>SERIES</a>
-    <a href="#tests" data-key="4"><kbd>4</kbd>TESTS</a>
-    <a href="#companions" data-key="5"><kbd>5</kbd>PAIRS</a>
-    <a href="#corrections" data-key="6"><kbd>6</kbd>CORR</a>
-    <a href="#outlook" data-key="7"><kbd>7</kbd>NEXT</a>
-    <a href="#method" data-key="8"><kbd>8</kbd>METHOD</a>
-    <a href="#terms" data-key="9"><kbd>9</kbd>TERMS</a>
+    <a href="#summary" data-key="1"><kbd>1</kbd><span class="key__label">SUMM</span></a>
+    <a href="#families" data-key="2"><kbd>2</kbd><span class="key__label">FAMILIES</span></a>
+    <a href="#series" data-key="3"><kbd>3</kbd><span class="key__label">SERIES</span></a>
+    <a href="#tests" data-key="4"><kbd>4</kbd><span class="key__label">TESTS</span></a>
+    <a href="#companions" data-key="5"><kbd>5</kbd><span class="key__label">PAIRS</span></a>
+    <a href="#corrections" data-key="6"><kbd>6</kbd><span class="key__label">CORR</span></a>
+    <a href="#outlook" data-key="7"><kbd>7</kbd><span class="key__label">NEXT</span></a>
+    <a href="#method" data-key="8"><kbd>8</kbd><span class="key__label">METHOD</span></a>
+    <a href="#terms" data-key="9"><kbd>9</kbd><span class="key__label">TERMS</span></a>
   </nav>
   <div class="bar__status" aria-label="Run details"><span>RUN 2026-10-18</span><span>RTX 4090</span><span>ZERO-SHOT</span></div>
 </header>
@@ -251,10 +285,11 @@ uv run python scripts/build_site_data.py</code></pre>
 </main>
 
 <footer class="foot">
-  <p>tsfore is an evaluation playground, not investment advice. Timestral weights are released by Mistral AI and Chronos-2 weights by Amazon under their own licenses. Fonts: Martian Mono and Archivo, SIL Open Font License. tsfore is <a href="https://github.com/noodlefrenzy/tsfore/blob/main/LICENSE">MIT-licensed</a>; third-party terms are in <a href="https://github.com/noodlefrenzy/tsfore/blob/main/NOTICE.md">NOTICE.md</a>.</p>
+  <p>tsfore is an evaluation playground, not investment advice. Timestral weights are released by Mistral AI and Chronos-2 weights by Amazon under their own licenses. Fonts: Martian Mono, Archivo and Public Sans, SIL Open Font License. tsfore is <a href="https://github.com/noodlefrenzy/tsfore/blob/main/LICENSE">MIT-licensed</a>; third-party terms are in <a href="https://github.com/noodlefrenzy/tsfore/blob/main/NOTICE.md">NOTICE.md</a>.</p>
 </footer>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script src="design.js"></script>
 </body>
 </html>
