@@ -1,4 +1,4 @@
-/* agent-notes: { ctx: "styles for the market-terminal results site", deps: [DESIGN.md, site/index.html], state: active, last: "claude@2026-10-18", key: ["tokens on :root mirror DESIGN.md frontmatter", "fonts self-hosted in site/fonts (OFL)"] } */
+/* agent-notes: { ctx: "styles for the market-terminal results site", deps: [DESIGN.md, site/index.html], state: active, last: "claude@2026-10-19", key: ["the terminal design; form.css and release.css are the alternates over the same markup", "tokens on :root mirror DESIGN.md frontmatter", "fonts self-hosted in site/fonts (OFL)"] } */
 /* tsfore results site: market-terminal world. Tokens first; see DESIGN.md. */
 @font-face {
   font-family: "Martian Mono";
@@ -72,6 +72,21 @@ var { color: var(--code); }
   background: var(--amber); color: var(--amber-ink); padding: 8px 12px; font-family: var(--mono); font-size: 0.8rem;
 }
 .skip:focus { top: 8px; }
+
+/* ---- design tabs ---- */
+.designs {
+  display: flex; align-items: stretch; padding: 0 var(--gutter) 0 0;
+  background: #050505; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-stretch: 87.5%; font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.designs__label { display: flex; align-items: center; padding: 0 12px; color: var(--dim); border-right: 1px solid var(--rule); }
+.designs button {
+  font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
+  background: transparent; color: var(--muted); border: 0; border-right: 1px solid var(--rule); padding: 0 12px; min-height: 28px;
+  transition: color 160ms ease-out, background-color 160ms ease-out;
+}
+.designs button:hover { color: var(--text); background: var(--pane-hi); }
+.designs button[aria-pressed="true"] { color: var(--amber); background: #1d1205; }
 
 /* ---- command bar ---- */
 .bar {
@@ -346,6 +361,8 @@ h3 { font-family: var(--sans); font-stretch: 85%; font-weight: 700; font-size: 1
   .method dl { grid-template-columns: 1fr; }
   .method dt { padding-bottom: 0; border-bottom: 0; }
   .sect { padding-top: 48px; }
+  .designs { padding: 0; }
+  .designs button { flex: 1; }
 }
 
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
